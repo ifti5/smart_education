@@ -3,29 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Attendance</title>
     <link rel="stylesheet" href="./style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <style>
+        .achievement-table th, .achievement-table td {
+            text-align: center;
+            vertical-align: middle;
+        }
+        .upload-form input, .upload-form textarea {
+            margin-bottom: 15px;
+        }
+    </style>
 </head>
-<style>
-    .complaint-form {
-        max-width: 600px;
-        margin: 50px auto;
-        padding: 20px;
-        background-color: #f8f9fa;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-</style>
+
 <body class="body">
 
+    
 <section class="homepagecontent"> 
     <!-- navigation bar start  -->
     <div id="navbar-placeholder"></div>
     <script>
-        fetch('navbar.html')
+        fetch('navbar.php')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('navbar-placeholder').innerHTML = data;
@@ -35,38 +35,60 @@
   
 
       <!-- naviagtion bar end  -->
+      <div class="container my-5">
+        <h2 class="text-center">Achievements</h2>
 
-<section>
-    <div class="container">
-        <div class="complaint-form">
-            <h2 class="text-center">Submit a Complaint</h2>
+        <!-- Upload Achievement Form -->
+        <div class="upload-form my-4">
+            <h4>Upload New Achievement</h4>
             <form>
                 <div class="mb-3">
-                    <label for="subject" class="form-label">Subject</label>
-                    <input type="text" class="form-control" id="subject" placeholder="Enter the subject of your complaint" required>
+                    <label for="achievementName" class="form-label">Achievement Name</label>
+                    <input type="text" class="form-control" id="achievementName" placeholder="Enter achievement name">
                 </div>
                 <div class="mb-3">
-                    <label for="body" class="form-label">Complaint Details</label>
-                    <textarea class="form-control" id="body" rows="5" placeholder="Describe your complaint in detail" required></textarea>
+                    <label for="achievementDate" class="form-label">Date</label>
+                    <input type="date" class="form-control" id="achievementDate">
                 </div>
                 <div class="mb-3">
-                    <label for="phone" class="form-label">Phone Number</label>
-                    <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number" required>
+                    <label for="achievementCertificate" class="form-label">Upload Certificate</label>
+                    <input type="file" class="form-control" id="achievementCertificate">
                 </div>
                 <div class="mb-3">
-                    <label for="email" class="form-label">Email Address</label>
-                    <input type="email" class="form-control" id="email" placeholder="Enter your email address" required>
+                    <label for="achievementComment" class="form-label">Comment</label>
+                    <textarea class="form-control" id="achievementComment" rows="3" placeholder="Enter any comments"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary w-100">Submit Complaint</button>
+                <button type="submit" class="btn btn-primary">Upload</button>
             </form>
         </div>
+
+        <!-- Achievements Table -->
+        <table class="table table-bordered achievement-table">
+            <thead>
+                <tr>
+                    <th>Achievement Name</th>
+                    <th>Date</th>
+                    <th>Certificate</th>
+                    <th>Comment</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Course Completion - Web Development</td>
+                    <td>2024-07-15</td>
+                    <td><a href="#" class="btn btn-sm btn-outline-primary">View Certificate</a></td>
+                    <td>Completed with distinction.</td>
+                </tr>
+                <tr>
+                    <td>Inter-College Basketball Championship</td>
+                    <td>2024-06-22</td>
+                    <td><a href="#" class="btn btn-sm btn-outline-primary">View Certificate</a></td>
+                    <td>Winner of the championship.</td>
+                </tr>
+                <!-- More rows can be added as needed -->
+            </tbody>
+        </table>
     </div>
-</section>
-
-
-
-
-
 
 <!-- footer  -->
 <section>
@@ -104,6 +126,9 @@
 
 </section>
 
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 
 

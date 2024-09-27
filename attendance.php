@@ -3,65 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Attendance</title>
     <link rel="stylesheet" href="./style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <style>
+        .attendance-table th, .attendance-table td {
+            text-align: center;
+            vertical-align: middle;
+        }
+        .attendance-table textarea {
+            width: 100%;
+            resize: none;
+        }
+        .percentage {
+            font-weight: bold;
+        }
+    </style>
 </head>
-<style>
-    .complaint-form {
-        max-width: 600px;
-        margin: 50px auto;
-        padding: 20px;
-        background-color: #f8f9fa;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-</style>
+
 <body class="body">
 
 <section class="homepagecontent"> 
     <!-- navigation bar start  -->
     <div id="navbar-placeholder"></div>
     <script>
-        fetch('navbar.html')
+        fetch('navbar.php')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('navbar-placeholder').innerHTML = data;
             });
     </script>
 
+
   
 
       <!-- naviagtion bar end  -->
 
-<section>
-    <div class="container">
-        <div class="complaint-form">
-            <h2 class="text-center">Submit a Complaint</h2>
-            <form>
-                <div class="mb-3">
-                    <label for="subject" class="form-label">Subject</label>
-                    <input type="text" class="form-control" id="subject" placeholder="Enter the subject of your complaint" required>
-                </div>
-                <div class="mb-3">
-                    <label for="body" class="form-label">Complaint Details</label>
-                    <textarea class="form-control" id="body" rows="5" placeholder="Describe your complaint in detail" required></textarea>
-                </div>
-                <div class="mb-3">
-                    <label for="phone" class="form-label">Phone Number</label>
-                    <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number" required>
-                </div>
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email Address</label>
-                    <input type="email" class="form-control" id="email" placeholder="Enter your email address" required>
-                </div>
-                <button type="submit" class="btn btn-primary w-100">Submit Complaint</button>
-            </form>
-        </div>
+ <div class="container my-5">
+        <h2 class="text-center">Attendance</h2>
+        <table class="table table-bordered attendance-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Day</th>
+                    <th>Course 1</th>
+                    <th>Course 2</th>
+                    <th>Course 3</th>
+                    <th>Percentage</th>
+                    <th>Comment</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>2024-08-14</td>
+                    <td>Monday</td>
+                    <td>Present</td>
+                    <td>Absent</td>
+                    <td>Present</td>
+                    <td class="percentage">67%</td>
+                    <td><textarea rows="1"></textarea></td>
+                </tr>
+                <tr>
+                    <td>2024-08-13</td>
+                    <td>Sunday</td>
+                    <td>Present</td>
+                    <td>Present</td>
+                    <td>Present</td>
+                    <td class="percentage">100%</td>
+                    <td><textarea rows="1"></textarea></td>
+                </tr>
+                <!-- More rows can be added as needed -->
+            </tbody>
+        </table>
     </div>
-</section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 
 

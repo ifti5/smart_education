@@ -10,13 +10,20 @@
 
 </head>
 <style>
-    .complaint-form {
-        max-width: 600px;
+    .cv-form {
+        max-width: 800px;
         margin: 50px auto;
         padding: 20px;
         background-color: #f8f9fa;
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .cv-preview {
+        margin-top: 30px;
+        padding: 20px;
+        background-color: white;
+        border: 1px solid #ddd;
     }
 </style>
 <body class="body">
@@ -25,47 +32,84 @@
     <!-- navigation bar start  -->
     <div id="navbar-placeholder"></div>
     <script>
-        fetch('navbar.html')
+        fetch('navbar.php')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('navbar-placeholder').innerHTML = data;
             });
     </script>
 
-  
 
       <!-- naviagtion bar end  -->
 
-<section>
-    <div class="container">
-        <div class="complaint-form">
-            <h2 class="text-center">Submit a Complaint</h2>
-            <form>
+      <div class="container">
+        <div class="cv-form">
+            <h2 class="text-center">Create Your CV</h2>
+            <form id="cvForm">
                 <div class="mb-3">
-                    <label for="subject" class="form-label">Subject</label>
-                    <input type="text" class="form-control" id="subject" placeholder="Enter the subject of your complaint" required>
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" placeholder="Enter your full name" required>
                 </div>
                 <div class="mb-3">
-                    <label for="body" class="form-label">Complaint Details</label>
-                    <textarea class="form-control" id="body" rows="5" placeholder="Describe your complaint in detail" required></textarea>
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
                 </div>
                 <div class="mb-3">
                     <label for="phone" class="form-label">Phone Number</label>
                     <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number" required>
                 </div>
                 <div class="mb-3">
-                    <label for="email" class="form-label">Email Address</label>
-                    <input type="email" class="form-control" id="email" placeholder="Enter your email address" required>
+                    <label for="education" class="form-label">Education</label>
+                    <textarea class="form-control" id="education" rows="4" placeholder="Enter your education details" required></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary w-100">Submit Complaint</button>
+                <div class="mb-3">
+                    <label for="experience" class="form-label">Experience</label>
+                    <textarea class="form-control" id="experience" rows="4" placeholder="Enter your work experience" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="skills" class="form-label">Skills</label>
+                    <textarea class="form-control" id="skills" rows="4" placeholder="List your skills" required></textarea>
+                </div>
+                <button type="button" class="btn btn-primary w-100" onclick="generatePDF()">Generate PDF</button>
             </form>
         </div>
+
+        <!-- CV Preview Section (Optional) -->
+        <div id="cvPreview" class="cv-preview d-none"></div>
     </div>
-</section>
 
+    <!-- JS PDF Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+        function generatePDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
 
+            // Get form values
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const phone = document.getElementById("phone").value;
+            const education = document.getElementById("education").value;
+            const experience = document.getElementById("experience").value;
+            const skills = document.getElementById("skills").value;
 
+            // Add text to PDF
+            doc.setFontSize(18);
+            doc.text(name, 10, 20);
+            doc.setFontSize(12);
+            doc.text(`Email: ${email}`, 10, 30);
+            doc.text(`Phone: ${phone}`, 10, 40);
+            doc.text("Education:", 10, 50);
+            doc.text(education, 10, 60);
+            doc.text("Experience:", 10, 80);
+            doc.text(experience, 10, 90);
+            doc.text("Skills:", 10, 110);
+            doc.text(skills, 10, 120);
 
+            // Save the PDF
+            doc.save(`${name}_CV.pdf`);
+        }
+    </script>
 
 
 <!-- footer  -->
