@@ -26,7 +26,18 @@
     </style>
 </head>
 <body>
+<<<<<<< HEAD
     <div id="navbar-placeholder"></div>
+=======
+<div id="navbar-placeholder"></div>
+    <script>
+        fetch('navbar_faculty.php')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-placeholder').innerHTML = data;
+            });
+    </script>
+>>>>>>> 52cfb0d882ac61c6d10b1e04baece425b38bd2bb
 
     <div class="container mt-4">
         <h1 class="text-center">Research Paper Management</h1>

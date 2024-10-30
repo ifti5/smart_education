@@ -16,7 +16,11 @@
 <body>
     <div id="navbar-placeholder"></div>
     <script>
+<<<<<<< HEAD
         fetch('navbar_faculty.html')
+=======
+        fetch('navbar_faculty.php')
+>>>>>>> 52cfb0d882ac61c6d10b1e04baece425b38bd2bb
             .then(response => response.text())
             .then(data => {
                 document.getElementById('navbar-placeholder').innerHTML = data;
