@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<style>
+    .cv-form {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .cv-preview {
+        margin-top: 30px;
+        padding: 20px;
+        background-color: white;
+        border: 1px solid #ddd;
+    }
+</style>
+<body class="body">
+
+<section class="homepagecontent"> 
+    <!-- navigation bar start  -->
+    <div id="navbar-placeholder"></div>
+    <script>
+        fetch('navbar.php')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-placeholder').innerHTML = data;
+            });
+    </script>
+
+
+      <!-- naviagtion bar end  -->
+
+      <div class="container">
+        <div class="cv-form">
+            <h2 class="text-center">Create Your CV</h2>
+            <form id="cvForm">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" placeholder="Enter your full name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Phone Number</label>
+                    <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number" required>
+                </div>
+                <div class="mb-3">
+                    <label for="education" class="form-label">Education</label>
+                    <textarea class="form-control" id="education" rows="4" placeholder="Enter your education details" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="experience" class="form-label">Experience</label>
+                    <textarea class="form-control" id="experience" rows="4" placeholder="Enter your work experience" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="skills" class="form-label">Skills</label>
+                    <textarea class="form-control" id="skills" rows="4" placeholder="List your skills" required></textarea>
+                </div>
+                <button type="button" class="btn btn-primary w-100" onclick="generatePDF()">Generate PDF</button>
+            </form>
+        </div>
+
+        <!-- CV Preview Section (Optional) -->
+        <div id="cvPreview" class="cv-preview d-none"></div>
+    </div>
+
+    <!-- JS PDF Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+        function generatePDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            // Get form values
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const phone = document.getElementById("phone").value;
+            const education = document.getElementById("education").value;
+            const experience = document.getElementById("experience").value;
+            const skills = document.getElementById("skills").value;
+
+            // Add text to PDF
+            doc.setFontSize(18);
+            doc.text(name, 10, 20);
+            doc.setFontSize(12);
+            doc.text(`Email: ${email}`, 10, 30);
+            doc.text(`Phone: ${phone}`, 10, 40);
+            doc.text("Education:", 10, 50);
+            doc.text(education, 10, 60);
+            doc.text("Experience:", 10, 80);
+            doc.text(experience, 10, 90);
+            doc.text("Skills:", 10, 110);
+            doc.text(skills, 10, 120);
+
+            // Save the PDF
+            doc.save(`${name}_CV.pdf`);
+        }
+    </script>
+
+
+<!-- footer  -->
+<section>
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="social-icons">
+                            <a href="#"><i class="bi bi-facebook"></i></a>
+                            <a href="#"><i class="bi bi-twitter"></i></a>
+                            <a href="#"><i class="bi bi-linkedin"></i></a>
+                            <a href="#"><i class="bi bi-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <div class="important-links">
+                            <a href="#">Home</a> | 
+                            <a href="#">Courses</a> | 
+                            <a href="#">About Us</a> | 
+                            <a href="#">Contact</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-end">
+                        <div class="logofooter">
+                            <img src="./asset/img/logo.png" alt="Smart Education Logo">
+                        </div>
+                    </div>
+                </div>
+                <div class="rights mt-3">
+                    <p>&copy; 2024 Smart Education System. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+</section>
+
+</section>
+
+
+
+
+
+
+<!-- Bootstrap Body -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.js"></script>         
+</body>
+</html>
