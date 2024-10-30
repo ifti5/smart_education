@@ -22,11 +22,7 @@
 <body>
   <div id="navbar-placeholder"></div>
   <script>
-<<<<<<< HEAD
       fetch('navbar_faculty.html')
-=======
-      fetch('navbar_faculty.php')
->>>>>>> 52cfb0d882ac61c6d10b1e04baece425b38bd2bb
           .then(response => response.text())
           .then(data => {
               document.getElementById('navbar-placeholder').innerHTML = data;
@@ -87,19 +83,50 @@
     <div class="card">
       <div class="card-header">Remove Assigned Courses</div>
       <div class="card-body">
-        <form>
-          <!-- Select Course to Remove -->
-          <div class="mb-3">
-            <label for="removeCourseSelect" class="form-label">Select Course to Remove</label>
-            <select class="form-select" id="removeCourseSelect">
-              <option>Select Course</option>
-              <option>Web Development</option>
-              <option>Data Structures</option>
-            </select>
+        <div class="card">
+          <div class="card-header">Remove Assigned Course Materials</div>
+          <div class="card-body">
+            <!-- Table for Course List -->
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Course Name</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="courseList">
+                <tr>
+                  <td>Web Development</td>
+                  <td><button type="button" class="btn btn-danger" onclick="deleteCourse(this)">Delete</button></td>
+                </tr>
+                <tr>
+                  <td>Data Structures</td>
+                  <td><button type="button" class="btn btn-danger" onclick="deleteCourse(this)">Delete</button></td>
+                </tr>
+                <tr>
+                  <td>Machine Learning</td>
+                  <td><button type="button" class="btn btn-danger" onclick="deleteCourse(this)">Delete</button></td>
+                </tr>
+                <tr>
+                  <td>Database Management</td>
+                  <td><button type="button" class="btn btn-danger" onclick="deleteCourse(this)">Delete</button></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-          <!-- Remove Button -->
-          <button type="submit" class="btn btn-danger">Remove Course Material</button>
-        </form>
+        </div>
+        
+        <script>
+          // Function to delete a course row
+          function deleteCourse(btn) {
+            const row = btn.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+          }
+        </script>
+        
+      
+      
+        
       </div>
     </div>
   </div>
