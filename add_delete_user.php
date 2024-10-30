@@ -7,6 +7,7 @@
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $role = mysqli_real_escape_string($conn, $_POST['role']);
+    
 
     $sql = "INSERT INTO users (first_name, last_name, email, password, role) VALUES ('$first_name', '$last_name', '$email', '$password', '$role')";
 
